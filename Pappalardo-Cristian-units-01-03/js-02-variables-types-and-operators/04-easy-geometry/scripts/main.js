@@ -1,3 +1,12 @@
+/**
+ * @file main.js
+ * @author Cristian Pappalardo
+ * Easy Geometry Exercise
+ * 
+ * This program calculates the circumference and area of a circle based on a given radius.
+ * The results are then displayed in the console with two decimal places for better readability.
+ */
+
 // Define the circle's radius
 const radius = 5;
 

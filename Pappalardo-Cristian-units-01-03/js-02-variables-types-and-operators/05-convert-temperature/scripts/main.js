@@ -1,3 +1,12 @@
+/**
+ * @file main.js
+ * @author Cristian Pappalardo
+ * Convert Temperature Exercise
+ * 
+ * This program converts temperatures between Celsius and Fahrenheit.
+ * The results are then displayed in the console.
+ */
+
 // Convert Celsius to Fahrenheit using the formula: (C × 9/5) + 32
 const celsiusTemperature = 25;
 const convertedFahrenheitTemperature = (celsiusTemperature * 9/5) + 32;

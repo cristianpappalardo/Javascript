@@ -1,3 +1,13 @@
+/**
+ * @file main.js
+ * @author Cristian Pappalardo
+ * Free Coffee Exercise
+ * 
+ * This program calculates the total number of cups of coffee a person will need 
+ * to last them until a certain age based on their current age, maximum age, and daily coffee consumption.
+ * The result is then displayed in the console.
+ */
+
 // Define personal coffee consumption data
 const currentAge = 20;
 const maxAge = 80;
