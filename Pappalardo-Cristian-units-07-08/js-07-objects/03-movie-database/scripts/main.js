@@ -1,6 +1,6 @@
 /**
- * @author Cristian Pappalardo
  * @file main.js
+ * @author Cristian Pappalardo
  * Movie database Exercise
  * 
  * This script defines an array of movie objects, each containing a title, duration, and list of stars. 

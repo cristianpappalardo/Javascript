@@ -1,6 +1,6 @@
 /**
- * @author Cristian Pappalardo
  * @file main.js
+ * @author Cristian Pappalardo
  * Recipe Exercise
  * 
  * This script defines an array of recipe objects, each containing a title, number of servings, and a list of ingredients.

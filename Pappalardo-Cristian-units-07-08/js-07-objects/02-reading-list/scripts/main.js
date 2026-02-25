@@ -1,6 +1,6 @@
 /**
- * @author Cristian Pappalardo
  * @file main.js
+ * @author Cristian Pappalardo
  * Reading List Exercise
  * 
  * This script defines an array of book objects, each containing a title, author, and a boolean indicating whether the book has been read. 
