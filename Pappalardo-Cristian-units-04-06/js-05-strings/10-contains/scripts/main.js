@@ -14,7 +14,7 @@
  * @returns true if string a contains string b, false otherwise
  */
 
-function aContainsB(a, b) {
+export function aContainsB(a, b) {
     return a.includes(b)
 }
 
