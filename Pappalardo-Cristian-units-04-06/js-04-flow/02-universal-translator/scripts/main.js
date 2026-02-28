@@ -1,3 +1,19 @@
+/**
+ * @file main.js
+ * @author Cristian Pappalardo
+ * contains exercise
+ *
+ * Write a function called helloWorld that:
+ * - takes a language code as input,
+ * - returns "Hello, World!" translated for supported languages,
+ * - falls back to English when the language code is not supported.
+ */
+
+/**
+ * Returns a translated "Hello, World!" message based on the provided language code.
+ * @param {string} languageCode - Language code such as "en", "es", or "fr".
+ * @returns {string} Translated greeting, or the English default.
+ */
 function helloWorld(languageCode) {
     if (languageCode === "en") {
         return "Hello, World!";
@@ -10,7 +26,7 @@ function helloWorld(languageCode) {
     }
 }
 
-
+// Test cases
 console.log(helloWorld("en")); // Output: Hello, World!
 console.log(helloWorld("es")); // Output: ¡Hola, Mundo!
 console.log(helloWorld("fr"));  // Output: Bonjour, le monde!

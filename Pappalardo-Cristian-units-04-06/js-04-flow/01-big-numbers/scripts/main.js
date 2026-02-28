@@ -1,3 +1,18 @@
+/**
+ * @file main.js
+ * @author Cristian Pappalardo
+ * contains exercise
+ * 
+ * Write a function called greaterNum that takes in two numbers as arguments and returns a string indicating which number is greater or if they are equal.
+ */
+
+/**
+ * Takes two numbers as arguments and returns a string indicating which number is greater or if they are equal.
+ * @param {number} num1 
+ * @param {number} num2 
+ * @returns String indicating which number is greater or if they are equal
+ */
+
 function greaterNum(num1,num2) {
   if (num1 > num2) {
     return num1 + " is greater than " + num2;
@@ -8,6 +23,7 @@ function greaterNum(num1,num2) {
   }
 }
 
+// Test cases
 console.log(greaterNum(3, 5));
 console.log(greaterNum(10, 2));
 console.log(greaterNum(7, 7));
