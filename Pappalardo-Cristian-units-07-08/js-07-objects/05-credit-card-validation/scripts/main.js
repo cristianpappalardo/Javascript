@@ -1,3 +1,24 @@
+/**
+ * @file main.js
+ * @author Cristian Pappalardo
+ * credit card validation exercise
+ * 
+ * Write a function validateCreditCard(cardNumber) that validates a credit card number based on the following criteria:
+ * - The number must be 16 digits long (excluding dashes).
+ * - The number must consist of digits only (after removing dashes).
+ * - The number must contain at least two different digits.
+ * - The final digit must be even.
+ */
+
+/**
+ * Validates a credit card number based on specific criteria:
+ * - The number must be 16 digits long (excluding dashes).
+ * - The number must consist of digits only (after removing dashes).
+ * - The number must contain at least two different digits.
+ * - The final digit must be even.
+ * @param {number} cardNumber the credit card number to validate, which may contain dashes 
+ * @returns an object containing the validation result, the original card number, and an error message if invalid
+ */
 function validateCreditCard(cardNumber) {
 	let sanitizedNumber = cardNumber.replace(/-/g, "");
 
