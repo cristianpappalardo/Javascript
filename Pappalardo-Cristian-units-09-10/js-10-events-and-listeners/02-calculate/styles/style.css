@@ -1,0 +1,14 @@
+body{
+    box-sizing: border-box;
+}
+
+button {
+    margin : 10px 0; 
+    display: block;
+}
+
+.solution {
+    margin : 20px 0;
+    font-size: 1.2em;
+    font-weight: bold;
+}
