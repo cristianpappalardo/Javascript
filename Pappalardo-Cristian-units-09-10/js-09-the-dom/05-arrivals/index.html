@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Airport Arrivals Board | Torino Demo</title>
+    <meta name="description" content="Live simulated airport arrivals board with flight details, dynamic statuses, and automatic updates.">
+    <meta name="author" content="Cristian Pappalardo">
+    <meta name="robots" content="index, follow">
+
+    <link rel="stylesheet" href="./styles/style.css">
+    <script src="./scripts/main.js" defer></script>
+</head>
+
+<body>
+    <header class="page-header">
+        <h1>International Airport Arrivals</h1>
+        <p class="subtitle">Realtime simulation. Board updates every 10 seconds.</p>
+    </header>
+
+    <main class="layout">
+        <section class="board-card" aria-labelledby="arrivals-title">
+            <div class="board-head">
+                <h2 id="arrivals-title">Arrivals Board</h2>
+                <p id="last-update" class="last-update">Last update: waiting for first refresh...</p>
+            </div>
+
+            <div class="table-wrap">
+                <table aria-describedby="arrivals-title">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Flight</th>
+                            <th>Airline</th>
+                            <th>From</th>
+                            <th>Terminal</th>
+                            <th>Gate</th>
+                            <th>Belt</th>
+                            <th>Aircraft</th>
+                            <th>Estimated</th>
+                            <th>Status</th>
+                            <th>Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody id="arrivals-body">
+                        <tr>
+                            <td colspan="12" class="empty-row">No flights yet. First update in 10 seconds.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <aside class="info-card" aria-labelledby="info-title">
+            <h2 id="info-title">Board Info</h2>
+            <ul>
+                <li>New flights are added to the bottom.</li>
+                <li>Delayed flights are highlighted in red.</li>
+                <li>Arrived flights are removed after 60 seconds.</li>
+                <li>Flights are always sorted by date and time.</li>
+            </ul>
+            <p id="totals">Active flights: 0</p>
+        </aside>
+    </main>
+</body>
+
+</html>

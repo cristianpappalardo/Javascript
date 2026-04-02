@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Guesser</title>
+    <link rel="stylesheet" href="./css/styles.css">
+    <script src="./scripts/main.js" defer></script>
+</head>
+<body>
+    <main class="game-shell">
+        <header class="game-header">
+            <h1>Word Guesser</h1>
+            <p>Guess one letter at a time before the drawing is complete.</p>
+        </header>
+
+        <section class="game-board" aria-label="Game area">
+            <div class="hangman-panel">
+                <div id="hangmanArt" class="hangman-art" role="img" aria-live="polite" aria-label="Hangman status image"></div>
+                <p id="resultMessage" class="result-message" aria-live="polite">Start guessing!</p>
+            </div>
+
+            <div class="word-panel">
+                <p class="label">Word</p>
+                <p id="wordDisplay" class="word-display" aria-live="polite">_ _ _</p>
+
+                <form id="guessForm" class="guess-form" novalidate>
+                    <label for="letterInput">Enter a letter</label>
+                    <div class="controls-row">
+                        <input
+                            id="letterInput"
+                            name="letter"
+                            type="text"
+                            inputmode="text"
+                            maxlength="1"
+                            autocomplete="off"
+                            aria-describedby="inputHint"
+                            required
+                        >
+                        <button type="submit">Guess</button>
+                        <button type="button" id="newGameButton" class="secondary">New Game</button>
+                    </div>
+                    <p id="inputHint" class="hint">Use one alphabetic character (A-Z).</p>
+                </form>
+            </div>
+        </section>
+
+        <section class="stats-panel" aria-label="Game details">
+            <article>
+                <h2>Previous guesses</h2>
+                <p id="guessesDisplay">None yet</p>
+            </article>
+            <article>
+                <h2>Remaining guesses</h2>
+                <p id="remainingGuesses">6</p>
+            </article>
+            <article>
+                <h2>Scoreboard</h2>
+                <p id="scoreDisplay">Wins: 0 | Losses: 0 | Streak: 0</p>
+            </article>
+        </section>
+    </main>
+</body>
+</html>

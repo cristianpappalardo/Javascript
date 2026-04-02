@@ -1,0 +1,189 @@
+:root {
+    --bg-start: #fbf6ea;
+    --bg-end: #e9f4ff;
+    --panel: #ffffff;
+    --ink: #1f2a37;
+    --muted: #5b6470;
+    --accent: #d97706;
+    --accent-strong: #b45309;
+    --danger: #be123c;
+    --success: #15803d;
+    --line: #d7dde5;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+    color: var(--ink);
+    background: linear-gradient(140deg, var(--bg-start), var(--bg-end));
+    min-height: 100vh;
+}
+
+.game-shell {
+    width: min(1000px, 92vw);
+    margin: 2rem auto;
+    background: rgba(255, 255, 255, 0.62);
+    backdrop-filter: blur(3px);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 18px;
+    padding: 1.2rem;
+    box-shadow: 0 15px 45px rgba(31, 42, 55, 0.12);
+}
+
+.game-header h1 {
+    margin: 0;
+    font-size: clamp(1.8rem, 4vw, 2.7rem);
+    letter-spacing: 1px;
+}
+
+.game-header p {
+    margin: 0.5rem 0 1rem;
+    color: var(--muted);
+}
+
+.game-board {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 1rem;
+}
+
+.hangman-panel,
+.word-panel,
+.stats-panel article {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 1rem;
+}
+
+.hangman-art {
+    margin: 0;
+    padding: 0.75rem;
+    background: #fcfcfc;
+    border: 1px dashed var(--line);
+    border-radius: 10px;
+    white-space: pre;
+    font-family: Consolas, Monaco, monospace;
+    font-size: 0.84rem;
+    line-height: 1.2;
+    min-height: 170px;
+}
+
+.result-message {
+    margin-top: 0.75rem;
+    color: var(--muted);
+    font-weight: 700;
+}
+
+.label {
+    margin: 0;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.82rem;
+}
+
+.word-display {
+    font-size: clamp(1.5rem, 4vw, 2.2rem);
+    letter-spacing: 0.6rem;
+    margin: 0.3rem 0 1rem;
+    min-height: 3rem;
+}
+
+.guess-form label {
+    display: block;
+    font-weight: 700;
+}
+
+.controls-row {
+    margin-top: 0.5rem;
+    display: flex;
+    gap: 0.45rem;
+    flex-wrap: wrap;
+}
+
+input[type="text"] {
+    width: 70px;
+    padding: 0.65rem 0.5rem;
+    border-radius: 10px;
+    border: 1px solid var(--line);
+    text-align: center;
+    font-size: 1.2rem;
+    text-transform: lowercase;
+}
+
+button {
+    border: none;
+    border-radius: 10px;
+    padding: 0.65rem 0.8rem;
+    cursor: pointer;
+    font-weight: 700;
+    color: white;
+    background: var(--accent);
+}
+
+button:hover {
+    background: var(--accent-strong);
+}
+
+button.secondary {
+    background: #475569;
+}
+
+button.secondary:hover {
+    background: #334155;
+}
+
+.hint {
+    margin-bottom: 0;
+    color: var(--muted);
+    font-size: 0.9rem;
+}
+
+.stats-panel {
+    margin-top: 1rem;
+    display: grid;
+    gap: 0.8rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.stats-panel h2 {
+    margin: 0;
+    font-size: 1rem;
+}
+
+.stats-panel p {
+    margin: 0.6rem 0 0;
+    color: var(--muted);
+}
+
+.result-message.win {
+    color: var(--success);
+}
+
+.result-message.lose {
+    color: var(--danger);
+}
+
+.result-message.warn {
+    color: var(--accent-strong);
+}
+
+input.is-invalid {
+    border-color: var(--danger);
+    outline-color: var(--danger);
+}
+
+@media (max-width: 780px) {
+    .game-board {
+        grid-template-columns: 1fr;
+    }
+
+    .stats-panel {
+        grid-template-columns: 1fr;
+    }
+}
