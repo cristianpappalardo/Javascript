@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Washer</title>
+    <link rel="stylesheet" href="./css/styles.css">
+    <script src="./scripts/main.js" defer></script>
+</head>
+<body>
+    <main class="app">
+        <header class="app-header">
+            <h1>The DOM Washer</h1>
+            <p>Three dirty stacks, one clean stack, and a dishwasher that washes two dishes at a time.</p>
+        </header>
+
+        <section class="controls" aria-label="Simulation controls">
+            <button id="startBtn" type="button">Run Simulation</button>
+            <button id="resetBtn" type="button" class="secondary">Reset</button>
+            <p id="statusText" aria-live="polite">Ready to wash dishes.</p>
+        </section>
+
+        <section class="dashboard" aria-label="Dish stacks">
+            <article class="stack-card">
+                <h2>Dirty Stack A</h2>
+                <p class="count" id="countA">0 dishes</p>
+                <ul id="stackA" class="stack-list" aria-label="Dirty stack A"></ul>
+            </article>
+
+            <article class="stack-card">
+                <h2>Dirty Stack B</h2>
+                <p class="count" id="countB">0 dishes</p>
+                <ul id="stackB" class="stack-list" aria-label="Dirty stack B"></ul>
+            </article>
+
+            <article class="stack-card">
+                <h2>Dirty Stack C</h2>
+                <p class="count" id="countC">0 dishes</p>
+                <ul id="stackC" class="stack-list" aria-label="Dirty stack C"></ul>
+            </article>
+
+            <article class="stack-card clean">
+                <h2>Clean Stack</h2>
+                <p class="count" id="countClean">0 dishes</p>
+                <ul id="cleanStack" class="stack-list" aria-label="Clean dishes"></ul>
+            </article>
+        </section>
+    </main>
+</body>
+</html>
