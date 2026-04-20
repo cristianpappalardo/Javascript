@@ -1,0 +1,34 @@
+/* Container styling */
+details {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  font-family: sans-serif;
+  overflow: hidden;
+}
+
+/* The clickable header */
+summary {
+  padding: 15px;
+  background-color: #f4f4f4;
+  cursor: pointer;
+  font-weight: bold;
+  list-style: none; /* Removes default arrow in some browsers */
+}
+
+/* Hover effect */
+summary:hover {
+  background-color: #e9e9e9;
+}
+
+/* The content area */
+.content {
+  padding: 15px;
+  border-top: 1px solid #ddd;
+}
+
+/* Change header color when open */
+details[open] summary {
+  background-color: #007bff;
+  color: white;
+}

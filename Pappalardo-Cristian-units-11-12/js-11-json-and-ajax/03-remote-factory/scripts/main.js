@@ -20,3 +20,92 @@ that you upload to jsonblob (the initial state of your DB)
 ● Your readme (markdown) should include links to all the jsonblobs that you
 are using as well as a list of their IDs
  */
+
+// Car object represented as a JSON string
+const carJSON = `{
+    "make": "Fiat",
+    "model": "Punto",
+    "year": 2020
+}`;
+
+// Factory object represented as a JSON string
+const factoryJSON = `{
+    "name": "Fiat Factory",
+    "location": "Turin, Italy",
+    "capacity": 1000
+}`;
+
+// Parse the JSON strings into JavaScript objects
+const car = JSON.parse(carJSON);
+const factory = JSON.parse(factoryJSON);
+
+// Function to create a list item for a given key-value pair
+function createListItem(key, value) {
+    const li = document.createElement('li');
+    li.textContent = `${key}: ${value}`;
+    return li;
+}
+
+// Get the container elements for the car and factory lists
+const carList = document.getElementById('car-list');
+const factoryList = document.getElementById('factory-list');
+
+// Populate the car list
+for (const [key, value] of Object.entries(car)) {
+    carList.appendChild(createListItem(key, value));
+}
+
+// Populate the factory list
+for (const [key, value] of Object.entries(factory)) {
+    factoryList.appendChild(createListItem(key, value));
+}
+
+
+// Endpoint for jsonblob API
+const endpoint = ' https://api.jsonblob.com';
+fetch(endpoint, {
+method: 'POST',
+body: carJSON,
+headers: {
+'Content-Type': 'application/json'
+}
+})
+.then(response => {
+if (!response.status === 201) {
+throw new Error('Network response was not ok');
+}
+return response.json();
+})
+.then(data => console.log(data))
+.catch(error => console.error('Error making POST request:', error));
+
+fetch(endpoint, {
+method: 'POST',
+body: factoryJSON,
+headers: {
+'Content-Type': 'application/json'
+}
+})
+.then(response => {
+if (!response.status === 201) {
+throw new Error('Network response was not ok');
+}
+return response.json();
+})
+.then(data => console.log(data))
+.catch(error => console.error('Error making POST request:', error));
+
+
+/* let car = document.getElementById('car');
+let factory = document.getElementById('factory');
+
+let eventListener = (event) => {
+    event.preventDefault();
+    console.log('Car clicked');
+    // Here you would add code to display the collapsible panel with more information about the car
+}
+car.addEventListener('click', eventListener);
+
+let editButton = document.getElementById('edit-button'); */
+
+

@@ -27,7 +27,7 @@ const car = {
         "abs": true,
         "sunroof": false
     }
-}
+};
 
 // Log the car object to the console
 console.log(car);
@@ -51,7 +51,7 @@ const carFactory = {
         "email": "fiat@fiat.com"
     },
     "hiring": true
-}
+};
 
 // Log the car factory object to the console
 console.log(carFactory);
@@ -77,10 +77,8 @@ for (let i = 0; i < 5; i++) {
             "sunroof": false
         }
     });
-}
+};
 
 // Log the cars array to the console
 console.log(cars);
 
-
-const 
