@@ -1,0 +1,137 @@
+[
+    {
+        "make": "Fiat",
+        "model": "Panda",
+        "year": 2010,
+        "avalableColors": [
+            "red",
+            "blue",
+            "green",
+            "black",
+            "white"
+        ],
+        "fuel": [
+            "petrol",
+            "electric"
+        ],
+        "factory": {
+            "name": "Fiat Factory",
+            "location": "Turin, Italy",
+            "established": 1899
+        },
+        "features": {
+            "airConditioning": true,
+            "powerSteering": true,
+            "abs": true,
+            "sunroof": false
+        }
+    },
+    {
+        "make": "Fiat",
+        "model": "500",
+        "year": 2015,
+        "avalableColors": [
+            "red",
+            "blue",
+            "green",
+            "black",
+            "white"
+        ],
+        "fuel": [
+            "petrol",
+            "electric"
+        ],
+        "factory": {
+            "name": "Fiat Factory",
+            "location": "Turin, Italy",
+            "established": 1899
+        },
+        "features": {
+            "airConditioning": true,
+            "powerSteering": true,
+            "abs": true,
+            "sunroof": true
+        }
+    },
+    {
+        "make": "Fiat",
+        "model": "Tipo",
+        "year": 2018,
+        "avalableColors": [
+            "red",
+            "blue",
+            "green",
+            "black",
+            "white"
+        ],
+        "fuel": [
+            "petrol",
+            "diesel"
+        ],
+        "factory": {
+            "name": "Fiat Factory",
+            "location": "Turin, Italy",
+            "established": 1899
+        },
+        "features": {
+            "airConditioning": true,
+            "powerSteering": true,
+            "abs": true,
+            "sunroof": false
+        }
+    },
+    {
+        "make": "Fiat",
+        "model": "Punto",
+        "year": 2012,
+        "avalableColors": [
+            "red",
+            "blue",
+            "green",
+            "black",
+            "white"
+        ],
+        "fuel": [
+            "petrol",
+            "diesel"
+        ],
+        "factory": {
+            "name": "Fiat Factory",
+            "location": "Turin, Italy",
+            "established": 1899
+        },
+        "features": {
+            "airConditioning": true,
+            "powerSteering": true,
+            "abs": true,
+            "sunroof": false
+        }
+    },
+    {
+        "make": "Fiat",
+        "model": "Doblo",
+        "year": 2016,
+        "avalableColors": [
+            "red",
+            "blue",
+            "green",
+            "black",
+            "white"
+        ],
+        "fuel": [
+            "petrol",
+            "diesel"
+        ],
+        "factory": {
+            "name": "Fiat Factory",
+            "location": "Turin, Italy",
+            "established": 1899
+        },
+        "features": {
+            "airConditioning": true,
+            "powerSteering": true,
+            "abs": true,
+            "sunroof": false
+        }
+    }
+]

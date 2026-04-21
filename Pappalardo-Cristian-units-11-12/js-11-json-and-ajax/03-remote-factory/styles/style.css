@@ -1,34 +1,137 @@
-/* Container styling */
-details {
-  border: 1px solid #ddd;
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: #f3f6fa;
+  color: #202734;
+}
+
+.page {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 24px 16px 32px;
+}
+
+.header h1 {
+  margin: 0;
+}
+
+.header p {
+  margin: 8px 0 0;
+  color: #4b5566;
+}
+
+.panel {
+  margin-top: 16px;
+  padding: 16px;
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #d6dbe6;
+}
+
+.message {
+  min-height: 24px;
+  margin-top: 16px;
+  padding: 10px 12px;
   border-radius: 8px;
-  margin-bottom: 10px;
-  font-family: sans-serif;
+  font-weight: 600;
+}
+
+.message.info {
+  background: #e6f0ff;
+  color: #234f8d;
+}
+
+.message.success {
+  background: #eaf9ef;
+  color: #1f6d3a;
+}
+
+.message.error {
+  background: #fdeaea;
+  color: #8c1f2a;
+}
+
+.car-list {
+  margin-top: 12px;
+}
+
+details {
+  border: 1px solid #d6dbe6;
+  border-radius: 10px;
+  margin-bottom: 12px;
   overflow: hidden;
 }
 
-/* The clickable header */
 summary {
-  padding: 15px;
-  background-color: #f4f4f4;
+  padding: 12px 14px;
+  background: #f7f9fc;
   cursor: pointer;
-  font-weight: bold;
-  list-style: none; /* Removes default arrow in some browsers */
+  font-weight: 700;
 }
 
-/* Hover effect */
-summary:hover {
-  background-color: #e9e9e9;
-}
-
-/* The content area */
-.content {
-  padding: 15px;
-  border-top: 1px solid #ddd;
-}
-
-/* Change header color when open */
 details[open] summary {
-  background-color: #007bff;
-  color: white;
+  border-bottom: 1px solid #d6dbe6;
+}
+
+.car-form {
+  display: grid;
+  gap: 10px;
+  padding: 14px;
+}
+
+.car-form label {
+  display: grid;
+  gap: 6px;
+}
+
+.car-form input {
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid #bfc7d7;
+}
+
+.car-form fieldset {
+  border: 1px solid #c8d0df;
+  border-radius: 8px;
+  padding: 10px;
+  display: grid;
+  gap: 8px;
+}
+
+.car-form fieldset label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.car-form button {
+  width: fit-content;
+  padding: 8px 14px;
+  border: 0;
+  border-radius: 8px;
+  background: #1769d2;
+  color: #ffffff;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.car-form button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.inline-status {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #4b5566;
+}
+
+@media (max-width: 640px) {
+  .page {
+    padding: 16px 12px 24px;
+  }
 }

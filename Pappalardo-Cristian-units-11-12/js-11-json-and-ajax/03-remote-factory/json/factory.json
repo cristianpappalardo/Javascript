@@ -1,0 +1,17 @@
+{
+    "name": "Fiat Factory",
+    "location": "Turin, Italy",
+    "established": 1899,
+    "carBlobIds": [
+        "REPLACE_WITH_CAR_1_BLOB_ID",
+        "REPLACE_WITH_CAR_2_BLOB_ID",
+        "REPLACE_WITH_CAR_3_BLOB_ID"
+    ],
+    "productionCapacity": 100000,
+    "employees": 5000,
+    "contact": {
+        "phone": "+39 011 1234567",
+        "email": "fiat@fiat.com"
+    },
+    "hiring": true
+}

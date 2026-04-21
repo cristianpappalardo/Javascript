@@ -1,0 +1,23 @@
+{
+    "id": 3,
+    "make": "Fiat",
+    "model": "Tipo",
+    "year": 2018,
+    "avalableColors": [
+        "red",
+        "blue",
+        "green",
+        "black",
+        "white"
+    ],
+    "fuel": [
+        "petrol",
+        "diesel"
+    ],
+    "features": {
+        "airConditioning": true,
+        "powerSteering": true,
+        "abs": true,
+        "sunroof": false
+    }
+}

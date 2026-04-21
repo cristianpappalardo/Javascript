@@ -1,0 +1,23 @@
+{
+    "id": 1,
+    "make": "Fiat",
+    "model": "Panda",
+    "year": 2010,
+    "avalableColors": [
+        "red",
+        "blue",
+        "green",
+        "black",
+        "white"
+    ],
+    "fuel": [
+        "petrol",
+        "electric"
+    ],
+    "features": {
+        "airConditioning": true,
+        "powerSteering": true,
+        "abs": true,
+        "sunroof": false
+    }
+}

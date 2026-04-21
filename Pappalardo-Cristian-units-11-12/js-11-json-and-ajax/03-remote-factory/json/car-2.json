@@ -1,0 +1,23 @@
+{
+    "id": 2,
+    "make": "Fiat",
+    "model": "500",
+    "year": 2015,
+    "avalableColors": [
+        "red",
+        "blue",
+        "green",
+        "black",
+        "white"
+    ],
+    "fuel": [
+        "petrol",
+        "electric"
+    ],
+    "features": {
+        "airConditioning": true,
+        "powerSteering": true,
+        "abs": true,
+        "sunroof": true
+    }
+}

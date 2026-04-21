@@ -1,0 +1,29 @@
+{
+    "name": "Fiat Factory",
+    "location": "Turin, Italy",
+    "established": 1899,
+    "carsProduced": [
+        {
+            "make": "Fiat",
+            "model": "Panda",
+            "year": 2020
+        },
+        {
+            "make": "Fiat",
+            "model": "500",
+            "year": 2021
+        },
+        {
+            "make": "Fiat",
+            "model": "Tipo",
+            "year": 2022
+        }
+    ],
+    "productionCapacity": 100000,
+    "employees": 5000,
+    "contact": {
+        "phone": "+39 011 1234567",
+        "email": "fiat@fiat.com"
+    },
+    "hiring": true
+}

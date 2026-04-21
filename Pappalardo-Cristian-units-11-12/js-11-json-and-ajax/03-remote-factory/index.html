@@ -2,68 +2,29 @@
 <html lang="en">
 
 <head>
-    <!-- =====================================================
-        BASIC DOCUMENT METADATA
-    ====================================================== -->
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-
-    <title>DOM Factory</title>
-    <meta name="description" content="A concise, compelling description of your page for SEO and social sharing.">
-    <meta name="keywords" content="keyword1, keyword2, keyword3">
-    <meta name="author" content="Your Name or Company">
-    <meta name="application-name" content="Your App Name">
-
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://www.example.com/">
-
-    <!-- =====================================================
-        SEARCH ENGINE / CRAWLER METADATA
-    ====================================================== -->
-    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-    <meta name="googlebot" content="index, follow">
-    <meta name="bingbot" content="index, follow">
-
-    <!-- =====================================================
-        STYLES
-    ====================================================== -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Remote Factory</title>
     <link rel="stylesheet" href="./styles/style.css">
-
-    <!-- =====================================================
-        SCRIPTS
-    ====================================================== -->
     <script src="./scripts/main.js" defer></script>
 </head>
 
 <body>
+    <main class="page">
+        <header class="header">
+            <h1>Remote Factory</h1>
+            <p>Cars are loaded from jsonblob and can be edited directly from this page.</p>
+        </header>
 
-    <!-- Your page content goes here -->
-    <h1>DOM Factory</h1>
+        <section id="message" class="message" aria-live="polite"></section>
 
-    <h2>Car Information</h2>
-        <details>
-            <summary>Click to expand panel</summary>
-            <div class="content">
-                <ul id="car-list">
-                    <!-- Car items will be dynamically added here -->
-                </ul>
+        <section id="factory-info" class="panel"></section>
 
-            </div>
-        </details>
-    </ul>
-
-    <h2>Factory Information</h2>
-        <details>
-            <summary>Click to expand panel</summary>
-            <div class="content">
-                <ul id="factory-list"></ul>
-                <!-- Factory information will be dynamically added here -->
-            </div>
-        </details>
-
-    </ul>
-
+        <section class="panel">
+            <h2>Cars</h2>
+            <div id="car-list" class="car-list"></div>
+        </section>
+    </main>
 </body>
 
 </html>

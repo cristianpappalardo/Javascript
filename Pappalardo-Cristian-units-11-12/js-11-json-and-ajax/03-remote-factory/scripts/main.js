@@ -1,111 +1,205 @@
-/**
- * @file main.js
- * @author Cristian Pappalardo
- * 03-Remote-factory exercise
- * 
- * ● Use jsonblob to store JSON data about cars and a car factory
-● You can use as many blobs as you need. Decide the structure in a way to
-reduce the amount of data you modify with HTTP requests
-● Write an application that displays a factory with a list of cars
-● Clicking on each car should display a collapsible panel with more
-information about the car
-● It should be possible to edit the car details
-● Save the modified data to jsonblob with an HTTP request
-● Whenever data is modified you should reload the new data from jsonblob
-once the writing has finished
-● You should handle all error cases in your application. If an HTTP request
-fails, you should display a message to the user
-● Your project should include a folder called ‘json’ with all the initial json files
-that you upload to jsonblob (the initial state of your DB)
-● Your readme (markdown) should include links to all the jsonblobs that you
-are using as well as a list of their IDs
- */
+const API_BASE = 'https://jsonblob.com/api/jsonBlob';
 
-// Car object represented as a JSON string
-const carJSON = `{
-    "make": "Fiat",
-    "model": "Punto",
-    "year": 2020
-}`;
+// Replace this with your actual factory blob ID from jsonblob.
+const FACTORY_BLOB_ID = 'REPLACE_WITH_FACTORY_BLOB_ID';
 
-// Factory object represented as a JSON string
-const factoryJSON = `{
-    "name": "Fiat Factory",
-    "location": "Turin, Italy",
-    "capacity": 1000
-}`;
+const messageEl = document.getElementById('message');
+const factoryInfoEl = document.getElementById('factory-info');
+const carListEl = document.getElementById('car-list');
 
-// Parse the JSON strings into JavaScript objects
-const car = JSON.parse(carJSON);
-const factory = JSON.parse(factoryJSON);
+init();
 
-// Function to create a list item for a given key-value pair
-function createListItem(key, value) {
-    const li = document.createElement('li');
-    li.textContent = `${key}: ${value}`;
-    return li;
+async function init() {
+    if (FACTORY_BLOB_ID === 'REPLACE_WITH_FACTORY_BLOB_ID') {
+        setMessage('Configure FACTORY_BLOB_ID in scripts/main.js before running the app.', 'error');
+        return;
+    }
+
+    await reloadAllData('Loading factory data...');
 }
 
-// Get the container elements for the car and factory lists
-const carList = document.getElementById('car-list');
-const factoryList = document.getElementById('factory-list');
+async function reloadAllData(loadingMessage = 'Reloading data...') {
+    setMessage(loadingMessage, 'info');
 
-// Populate the car list
-for (const [key, value] of Object.entries(car)) {
-    carList.appendChild(createListItem(key, value));
+    try {
+        const factory = await fetchBlob(FACTORY_BLOB_ID);
+
+        if (!Array.isArray(factory.carBlobIds)) {
+            throw new Error('Factory data is invalid: missing "carBlobIds" array.');
+        }
+
+        const cars = await Promise.all(
+            factory.carBlobIds.map(async carBlobId => {
+                const car = await fetchBlob(carBlobId);
+                return { blobId: carBlobId, data: car };
+            })
+        );
+
+        renderFactory(factory);
+        renderCars(cars);
+        setMessage('Data loaded successfully.', 'success');
+    } catch (error) {
+        setMessage(error.message, 'error');
+        factoryInfoEl.innerHTML = '';
+        carListEl.innerHTML = '';
+    }
 }
 
-// Populate the factory list
-for (const [key, value] of Object.entries(factory)) {
-    factoryList.appendChild(createListItem(key, value));
+async function fetchBlob(blobId) {
+    const response = await fetch(`${API_BASE}/${blobId}`);
+
+    if (!response.ok) {
+        throw new Error(`GET failed for blob ${blobId}: HTTP ${response.status}`);
+    }
+
+    try {
+        return await response.json();
+    } catch {
+        throw new Error(`Blob ${blobId} does not contain valid JSON.`);
+    }
 }
 
+async function saveBlob(blobId, data) {
+    const response = await fetch(`${API_BASE}/${blobId}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    });
 
-// Endpoint for jsonblob API
-const endpoint = ' https://api.jsonblob.com';
-fetch(endpoint, {
-method: 'POST',
-body: carJSON,
-headers: {
-'Content-Type': 'application/json'
+    if (!response.ok) {
+        throw new Error(`PUT failed for blob ${blobId}: HTTP ${response.status}`);
+    }
 }
-})
-.then(response => {
-if (!response.status === 201) {
-throw new Error('Network response was not ok');
+
+function renderFactory(factory) {
+    factoryInfoEl.innerHTML = `
+        <h2>${escapeHtml(factory.name ?? 'Unknown factory')}</h2>
+        <p><strong>Location:</strong> ${escapeHtml(factory.location ?? 'N/A')}</p>
+        <p><strong>Established:</strong> ${escapeHtml(String(factory.established ?? 'N/A'))}</p>
+        <p><strong>Production Capacity:</strong> ${escapeHtml(String(factory.productionCapacity ?? 'N/A'))}</p>
+        <p><strong>Employees:</strong> ${escapeHtml(String(factory.employees ?? 'N/A'))}</p>
+        <p><strong>Hiring:</strong> ${factory.hiring ? 'Yes' : 'No'}</p>
+        <p><strong>Contact:</strong> ${escapeHtml(factory.contact?.email ?? 'N/A')} - ${escapeHtml(factory.contact?.phone ?? 'N/A')}</p>
+    `;
 }
-return response.json();
-})
-.then(data => console.log(data))
-.catch(error => console.error('Error making POST request:', error));
 
-fetch(endpoint, {
-method: 'POST',
-body: factoryJSON,
-headers: {
-'Content-Type': 'application/json'
+function renderCars(cars) {
+    carListEl.innerHTML = '';
+
+    if (cars.length === 0) {
+        carListEl.innerHTML = '<p>No cars found.</p>';
+        return;
+    }
+
+    cars.forEach(carItem => {
+        carListEl.appendChild(buildCarEditor(carItem));
+    });
 }
-})
-.then(response => {
-if (!response.status === 201) {
-throw new Error('Network response was not ok');
+
+function buildCarEditor(carItem) {
+    const details = document.createElement('details');
+    const summary = document.createElement('summary');
+    const { data: car, blobId } = carItem;
+    summary.textContent = `${car.make ?? 'Unknown'} ${car.model ?? 'Model'} (${car.year ?? 'N/A'})`;
+
+    const form = document.createElement('form');
+    form.className = 'car-form';
+    form.innerHTML = `
+        <label>Make<input name="make" value="${escapeAttribute(car.make ?? '')}" required></label>
+        <label>Model<input name="model" value="${escapeAttribute(car.model ?? '')}" required></label>
+        <label>Year<input name="year" type="number" min="1886" max="2100" value="${escapeAttribute(String(car.year ?? ''))}" required></label>
+        <label>Available colors (comma separated)<input name="avalableColors" value="${escapeAttribute((car.avalableColors ?? []).join(', '))}"></label>
+        <label>Fuel (comma separated)<input name="fuel" value="${escapeAttribute((car.fuel ?? []).join(', '))}"></label>
+
+        <fieldset>
+            <legend>Features</legend>
+            <label><input type="checkbox" name="airConditioning" ${car.features?.airConditioning ? 'checked' : ''}>Air conditioning</label>
+            <label><input type="checkbox" name="powerSteering" ${car.features?.powerSteering ? 'checked' : ''}>Power steering</label>
+            <label><input type="checkbox" name="abs" ${car.features?.abs ? 'checked' : ''}>ABS</label>
+            <label><input type="checkbox" name="sunroof" ${car.features?.sunroof ? 'checked' : ''}>Sunroof</label>
+        </fieldset>
+
+        <button type="submit">Save car</button>
+        <p class="inline-status" aria-live="polite"></p>
+    `;
+
+    form.addEventListener('submit', async event => {
+        event.preventDefault();
+        const statusEl = form.querySelector('.inline-status');
+
+        try {
+            setBusy(form, true);
+            statusEl.textContent = 'Saving...';
+
+            const updatedCar = extractCarFromForm(form, car);
+            await saveBlob(blobId, updatedCar);
+
+            statusEl.textContent = 'Saved. Reloading latest data...';
+            await reloadAllData('Reloading after save...');
+        } catch (error) {
+            statusEl.textContent = error.message;
+            setMessage(error.message, 'error');
+        } finally {
+            setBusy(form, false);
+        }
+    });
+
+    details.appendChild(summary);
+    details.appendChild(form);
+    return details;
 }
-return response.json();
-})
-.then(data => console.log(data))
-.catch(error => console.error('Error making POST request:', error));
 
+function extractCarFromForm(form, originalCar) {
+    const formData = new FormData(form);
 
-/* let car = document.getElementById('car');
-let factory = document.getElementById('factory');
-
-let eventListener = (event) => {
-    event.preventDefault();
-    console.log('Car clicked');
-    // Here you would add code to display the collapsible panel with more information about the car
+    return {
+        ...originalCar,
+        make: String(formData.get('make') ?? '').trim(),
+        model: String(formData.get('model') ?? '').trim(),
+        year: Number(formData.get('year')),
+        avalableColors: parseCsvToArray(formData.get('avalableColors')),
+        fuel: parseCsvToArray(formData.get('fuel')),
+        features: {
+            airConditioning: formData.get('airConditioning') === 'on',
+            powerSteering: formData.get('powerSteering') === 'on',
+            abs: formData.get('abs') === 'on',
+            sunroof: formData.get('sunroof') === 'on'
+        }
+    };
 }
-car.addEventListener('click', eventListener);
 
-let editButton = document.getElementById('edit-button'); */
+function parseCsvToArray(value) {
+    return String(value ?? '')
+        .split(',')
+        .map(item => item.trim())
+        .filter(Boolean);
+}
+
+function setBusy(form, isBusy) {
+    const controls = form.querySelectorAll('input, button');
+    controls.forEach(control => {
+        control.disabled = isBusy;
+    });
+}
+
+function setMessage(text, type) {
+    messageEl.textContent = text;
+    messageEl.className = `message ${type}`;
+}
+
+function escapeHtml(value) {
+    return String(value)
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#39;');
+}
+
+function escapeAttribute(value) {
+    return escapeHtml(value);
+}
 
 

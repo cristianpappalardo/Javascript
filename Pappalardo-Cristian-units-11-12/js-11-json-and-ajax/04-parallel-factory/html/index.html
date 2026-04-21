@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Parallel Factory</title>
+    <link rel="stylesheet" href="../styles/style.css">
+    <script src="../scripts/main.js" defer></script>
+</head>
+
+<body>
+    <main class="page">
+        <header>
+            <h1>Parallel Factory</h1>
+            <p>All car blobs are requested in parallel and rendered together.</p>
+        </header>
+
+        <section id="loader" class="loader" aria-live="polite">Loading data from jsonblob...</section>
+        <section id="error" class="error" role="alert" hidden></section>
+
+        <section id="content" hidden>
+            <article id="factory"></article>
+            <h2>Cars</h2>
+            <div id="cars" class="cars"></div>
+        </section>
+    </main>
+</body>
+
+</html>
